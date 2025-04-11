@@ -1,51 +1,219 @@
 <!---
 {
+  "id": "9c17f900-f66c-44e6-9761-fcfba8a2f87d",
   "depends_on": [],
   "author": "Stephan Bökelmann",
-  "first_used": "2025-03-17",
-  "keywords": ["learning", "exercises", "education", "practice"]
+  "first_used": "2025-04-11",
+  "keywords": ["vector potential", "electromagnetism", "EM waves", "Maxwell equations"]
 }
 --->
 
-# Learning Through Exercises
+# Introduction to Vector Potential for Electromagnetic Waves
 
-## Introduction
-Learning by doing is one of the most effective methods to acquire new knowledge and skills. Rather than passively consuming information, actively engaging in problem-solving fosters deeper understanding and long-term retention. By working through structured exercises, students can grasp complex concepts in a more intuitive and applicable way. This approach is particularly beneficial in technical fields like programming, mathematics, and engineering.
+> In this exercise you will learn how electromagnetic waves can be described not only by electric and magnetic fields, but also by a helper concept called the vector potential. Furthermore we will explore how this idea helps us understand light and radio waves more easily.
+
+### Introduction
+
+Electromagnetic waves, like light and radio waves, are all around us. These waves are made of electric fields and magnetic fields. Usually, in school, we learn about these fields directly, but there's another way to look at them: using something called a **vector potential**.
+
+A **vector potential**, often written as **A**, is like a hidden map that helps us calculate both the electric and magnetic fields. Just like how the slope of a hill tells you how fast you're going downhill, the vector potential helps describe how the fields are changing. While this might sound abstract, it’s a powerful way to work with electromagnetic waves — especially when doing calculations.
+
+For example, the magnetic field **B** can be found from **A** using a special kind of derivative called the **curl**:
+
+```latex
+\vec{B} = \nabla \times \vec{A}
+```
+
+That squiggly "∇×" means we're finding how the vector potential twists or curls in space.
+
+Why do we care? Sometimes it’s easier to find the vector potential first and then calculate the fields, especially in complicated situations. And in advanced physics, like quantum mechanics and relativity, the vector potential is actually more fundamental than the electric and magnetic fields themselves - which was shown by the Aharonov-Bohm effect in 1959!
+
+Let’s walk through some simple steps to understand how it works, starting with drawing fields and working out examples.
 
 ### Further Readings and Other Sources
-- [The Importance of Practice in Learning](https://www.sciencedirect.com/science/article/pii/S036013151300062X)
-- "The Art of Learning" by Josh Waitzkin
-- [How to Learn Effectively: 5 Key Strategies](https://www.edutopia.org/article/5-research-backed-learning-strategies)
+
+- [Khan Academy: Electromagnetic Waves and Fields](https://www.khanacademy.org/science/physics/light-waves)
+- [MIT OpenCourseWare on Vector Potential (Video)](https://ocw.mit.edu/courses/8-02sc-physics-ii-electricity-and-magnetism-fall-2010/resources/lecture-22-vector-potential/)
+- [HyperPhysics – Vector Potential](http://hyperphysics.phy-astr.gsu.edu/hbase/magnetic/vector.html)
+
+---
 
 ## Tasks
-1. **Write a Summary**: Summarize the concept of "learning by doing" in 3-5 sentences.
-2. **Example Identification**: List three examples from your own experience where learning through exercises helped you understand a topic better.
-3. **Create an Exercise**: Design a simple exercise for a topic of your choice that someone else could use to practice.
-4. **Follow an Exercise**: Find an online tutorial that includes exercises and complete at least two of them.
-5. **Modify an Existing Exercise**: Take a basic problem from a textbook or online course and modify it to make it slightly more challenging.
-6. **Pair Learning**: Explain a concept to a partner and guide them through an exercise without giving direct answers.
-7. **Review Mistakes**: Look at an exercise you've previously completed incorrectly. Identify why the mistake happened and how to prevent it in the future.
-8. **Time Challenge**: Set a timer for 10 minutes and try to solve as many simple exercises as possible on a given topic.
-9. **Self-Assessment**: Create a checklist to evaluate your own performance in completing exercises effectively.
-10. **Reflect on Progress**: Write a short paragraph on how this structured approach to exercises has influenced your learning.
 
-<details>
-  <summary>Tip for Task 5</summary>
-  Try making small adjustments first, such as increasing the difficulty slightly or adding an extra constraint.
-</details>
+### Task 1: Visualizing the Magnetic Field and the Vector Potential
+
+1. Draw a straight wire with a current going upwards.
+2. Around this wire, draw circular magnetic field lines around the wire.
+3. Now, draw arrows that point along those circles. These arrows represent the vector potential **A**.
+4. Use the formula `\vec{B} = \nabla \times \vec{A}` to explain how the circular **A** leads to circular **B**.
+Hint: You can think of the vector potential arrows as flowing water in a whirlpool — the twist of that flow is the magnetic field.
+
+
+- Assume the vector potential \( \vec{A} \) points tangentially around the wire (like a whirlpool), and its magnitude depends on the distance from the wire.
+- In cylindrical coordinates (\( r, \theta, z \)), this might look like:
+
+```latex
+\vec{A} = A_\theta(r) \hat{\theta}
+```
+
+- The curl of \( \vec{A} \) in cylindrical coordinates gives the magnetic field:
+
+```latex
+\vec{B} = \nabla \times \vec{A} = \left( \frac{1}{r} \frac{\partial (r A_\theta)}{\partial r} \right) \hat{z}
+```
+
+- Suppose \( A_\theta(r) = \frac{k}{r} \), then:
+
+```latex
+\frac{\partial}{\partial r} (r A_\theta) = \frac{\partial}{\partial r} (r \cdot \frac{k}{r}) = \frac{\partial}{\partial r} (k) = 0
+```
+
+- This would mean no magnetic field (\( \vec{B} = 0 \)), so instead pick a function like \( A_\theta = kr \), then:
+
+```latex
+r A_\theta = kr^2 \Rightarrow \frac{\partial}{\partial r}(r A_\theta) = \frac{\partial}{\partial r}(kr^2) = 2kr
+```
+
+- Then:
+
+```latex
+\vec{B} = \frac{1}{r} (2kr) = 2k \Rightarrow \vec{B} = 2k \hat{z}
+```
+
+- This shows a uniform magnetic field pointing upward along the wire — matching what we observe around a current-carrying wire!
+
+### Task 2: Deriving the Magnetic Field from a Simple Vector Potential (Step-by-Step)
+
+We are given a vector potential:
+
+```latex
+\vec{A} = (-y, x, 0)
+```
+
+This means:
+- The x-component of **A** is **−y**
+- The y-component of **A** is **x**
+- The z-component of **A** is **0**
+
+To find the magnetic field **B**, we take the **curl** of **A**:
+
+```latex
+\vec{B} = \nabla \times \vec{A}
+```
+
+Now we compute this using the curl formula in Cartesian coordinates:
+
+```latex
+\nabla \times \vec{A} = 
+\left( \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z},\ 
+       \frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x},\ 
+       \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} \right)
+```
+
+Let’s plug in each component of **A**:
+
+- \( A_x = -y \)
+- \( A_y = x \)
+- \( A_z = 0 \)
+
+Now evaluate each partial derivative:
+
+1. **x-component of B**:
+```latex
+\frac{\partial A_z}{\partial y} = \frac{\partial 0}{\partial y} = 0 \\
+\frac{\partial A_y}{\partial z} = \frac{\partial x}{\partial z} = 0 \\
+\Rightarrow B_x = 0 - 0 = 0
+```
+
+2. **y-component of B**:
+```latex
+\frac{\partial A_x}{\partial z} = \frac{\partial (-y)}{\partial z} = 0 \\
+\frac{\partial A_z}{\partial x} = \frac{\partial 0}{\partial x} = 0 \\
+\Rightarrow B_y = 0 - 0 = 0
+```
+
+3. **z-component of B**:
+```latex
+\frac{\partial A_y}{\partial x} = \frac{\partial x}{\partial x} = 1 \\
+\frac{\partial A_x}{\partial y} = \frac{\partial (-y)}{\partial y} = -1 \\
+\Rightarrow B_z = 1 - (-1) = 2
+```
+
+Putting it all together:
+
+```latex
+\vec{B} = (0, 0, 2)
+```
+
+**Conclusion:**  
+The magnetic field is a constant vector pointing in the z-direction with magnitude 2. So, even though **A** varies with x and y, the resulting **B** is a uniform field pointing straight out of the page.
+
+
+### Task 3: Relating Electric Field to the Vector Potential (Step-by-Step)
+
+Sometimes, instead of coming from charges, electric fields are created when the vector potential changes over time.
+
+The mathematical relationship is:
+
+```latex
+\vec{E} = -\frac{\partial \vec{A}}{\partial t}
+```
+
+This means:
+- The electric field **E** is the **negative rate of change** of the vector potential **A** over time.
+- If **A** increases or decreases, **E** appears in the opposite direction.
+
+
+Let’s say the vector potential depends on time like this:
+
+```latex
+\vec{A}(t) = (0, A_0 \cos(\omega t), 0)
+```
+
+Which means:
+- There is no x-component or z-component of **A**.
+- The y-component oscillates back and forth with cosine over time.
+
+Now calculate **E** by taking the time derivative:
+
+1. Take the partial derivative of **A** with respect to time:
+
+```latex
+\frac{\partial \vec{A}}{\partial t} = \left( 0, -A_0 \omega \sin(\omega t), 0 \right)
+```
+
+2. Apply the negative sign from the formula:
+
+```latex
+\vec{E}(t) = -\frac{\partial \vec{A}}{\partial t} = \left( 0, \omega A_0 \sin(\omega t), 0 \right)
+```
+
+So the electric field is:
+
+```latex
+\vec{E}(t) = (0, \omega A_0 \sin(\omega t), 0)
+```
+
+#### Interpretation:
+
+- The electric field oscillates over time in the y-direction, just like **A**, but shifted to a sine wave instead of a cosine.
+- If you were to plot both, you’d see **A** lagging behind **E** by a quarter cycle.
+- This type of behavior is common in **electromagnetic waves**, where **A**, **E**, and **B** are all linked and oscillate together.
+
+Try sketching both **A** and **E** on the same time axis to visualize how one creates the other!
+
+---
 
 ## Questions
-1. What are the main benefits of learning through exercises compared to passive learning?
-2. How do exercises improve long-term retention?
-3. Can you think of a subject where learning through exercises might be less effective? Why?
-4. What role does feedback play in learning through exercises?
-5. How can self-designed exercises improve understanding?
-6. Why is it beneficial to review past mistakes in exercises?
-7. How does explaining a concept to someone else reinforce your own understanding?
-8. What strategies can you use to stay motivated when practicing with exercises?
-9. How can timed challenges contribute to learning efficiency?
-10. How do exercises help bridge the gap between theory and practical application?
+
+1. Why do scientists use the vector potential instead of always using electric and magnetic fields directly?
+2. What does the curl of a vector tell us in physical terms?
+3. If the vector potential was zero, what could you say about the magnetic field?
+4. Can you think of a situation where calculating the vector potential is easier than finding **B** directly?
+
+---
 
 ## Advice
-Practice consistently and seek out diverse exercises that challenge different aspects of a topic. Combine exercises with reflection and feedback to maximize your learning efficiency. Don't hesitate to adapt exercises to fit your own needs and ensure that you're actively engaging with the material, rather than just going through the motions.
+
+Understanding the vector potential takes time, especially because it's not something we see directly in nature. But just like gravity can be described by a potential energy field, magnetism can be described by a vector potential. Stick with the diagrams — they help a lot! If you find yourself confused, go back to drawing the fields and ask yourself: what is twisting, and what is flowing? This sheet connects nicely with the sheet on [magnetic field lines from currents](#) and [electromagnetic waves as solutions to Maxwell's equations](#). Keep exploring, and remember: even the most advanced ideas in physics start with a picture and a question!
 
